@@ -36,3 +36,38 @@ We have also created a [Trello Board](https://trello.com/b/Pen7p1yE/acebook-task
 
 ## Our user stories are as follows:
 
+As a user, I would like to be able to sign-up to Acebook.
+
+As a user, I would like to be able to sign-in to Acebook.
+
+As a user, I would like to be able to sign-out of Acebook.
+
+As a user, I would like to post to my timeline.
+
+As a user, I would like to be able to delete posts.
+
+As a user, I would like for only my friends to see my posts.
+
+As a user, I would like to have a profile page.
+
+As a user, I would like to 'accept' or 'decline' friendship requests.
+
+As a friend of the user, I would like to be able to see the most recent post of the user at the top of my timeline.
+
+As a friend of the user, I would like to 'like' the user's post.
+
+As a friend of the user, I would like to be able to 'comment' on the user's post.
+
+As a friend of the user, I would like to be request added to the user's friend's list.
+
+**EXTENSION**
+
+As a user, I would like to be able to 'block' other users.
+
+As a friend of the user, I would like to be able to share the user's post to my timeline.
+
+As a friend of the user, I would like to be able to view my friend's friend list.
+
+As a friend of the user, I would like to be able to send a direct message to the user.
+
+As a user, I would like to be able to receive a message from a friend.
