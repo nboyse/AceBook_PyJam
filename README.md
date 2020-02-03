@@ -36,22 +36,29 @@ We have also created a [Trello Board](https://trello.com/b/Pen7p1yE/acebook-task
 
 ## Our user stories are as follows:
 
+**As a user**
 ```
-As a user, I would like to be able to sign-up to Acebook.
+I would like to be able to sign-up to Acebook.
 
-As a user, I would like to be able to sign-in to Acebook.
+I would like to be able to sign-in to Acebook.
 
-As a user, I would like to be able to sign-out of Acebook.
+I would like to be able to sign-out of Acebook.
 
-As a user, I would like to post to my timeline.
+I would like to post to my timeline.
 
-As a user, I would like to be able to delete posts.
+I would like to be able to delete posts.
 
-As a user, I would like for only my friends to see my posts.
+I would like for only my friends to see my posts.
 
-As a user, I would like to have a profile page.
+I would like to have a profile page.
 
-As a user, I would like to 'accept' or 'decline' friendship requests.
+I would like to 'accept' or 'decline' friendship requests.
+
+```
+
+**As a friend of the user**
+
+```
 
 As a friend of the user, I would like to be able to see the most recent post of the user at the top of my timeline.
 
