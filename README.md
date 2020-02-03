@@ -36,6 +36,7 @@ We have also created a [Trello Board](https://trello.com/b/Pen7p1yE/acebook-task
 
 ## Our user stories are as follows:
 
+```
 As a user, I would like to be able to sign-up to Acebook.
 
 As a user, I would like to be able to sign-in to Acebook.
@@ -60,7 +61,11 @@ As a friend of the user, I would like to be able to 'comment' on the user's post
 
 As a friend of the user, I would like to be request added to the user's friend's list.
 
+```
+
 **EXTENSION**
+
+```
 
 As a user, I would like to be able to 'block' other users.
 
@@ -71,3 +76,5 @@ As a friend of the user, I would like to be able to view my friend's friend list
 As a friend of the user, I would like to be able to send a direct message to the user.
 
 As a user, I would like to be able to receive a message from a friend.
+
+```
