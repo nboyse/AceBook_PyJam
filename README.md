@@ -3,17 +3,17 @@ This is the group repo for PyJam (Aaron, Anne-Louise and Natasha.
 
 ## Team Charter
 
-Team PyJam have a 10 minute catchup at 10am and 13:50pm daily to discuss where we are, what our next steps towards completion of Acebook are and how we are feeling the project is currently going.
+* Team PyJam will have a 10 minute catchup at 10am and 13:50pm daily to discuss where we are, what our next steps towards completion of Acebook are and how we are feeling the project is currently going.
 
-We have agreed to schedule the launch of coding our project at 14:00 4/2/20.
+* We have agreed to schedule the launch of coding our project at 14:00 4/2/20.
 
-We will be writing the front end of our project using templates from Bootstrap 4.4.1.
+* We will be writing the front end of our project using templates from Bootstrap 4.4.1.
 
-We plan to feature freeze our code between 11/2/20-12/2/20. No further additions to our features that haven't begun will be added to our project at this point.
+* We plan to feature freeze our code between 11/2/20-12/2/20. No further additions to our features that haven't begun will be added to our project at this point.
 
-There will be a code freeze on 13/2/20 to refactor and cleanup the back and front end.
+* There will be a code freeze on 13/2/20 to refactor and cleanup the back and front end.
 
-There will be a meeting on 14/2/20 (Time TBC) to go through the work we have completed and ensure there is a concise understanding across all members for the existence of all aspects the code.
+* There will be a meeting on 14/2/20 (Time TBC) to go through the work we have completed and ensure there is a concise understanding across all members for the existence of all aspects the code.
 
 **We agree to:**
 
