@@ -5,12 +5,17 @@ from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from .forms import PostsForm
+from .models import Posts
 
 # Create your views here.
 
 
 def home(req): # route landing page, home for non users
-    return render(req, 'users/index.html')
+    if req.method == 'GET':
+        return render(req, 'users/index.html', {'form': PostsForm()})
+    else:
+        pass
 
 
 def about(req):
