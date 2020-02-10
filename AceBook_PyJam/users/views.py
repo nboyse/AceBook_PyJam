@@ -14,3 +14,7 @@ def about(req):
 
 def register(req):
     return render(req, 'users/register.html')
+
+
+def login(req):
+    return render(req, 'users/login.html')

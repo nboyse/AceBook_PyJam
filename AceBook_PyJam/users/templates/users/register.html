@@ -1,14 +1,21 @@
+
 {% extends "users/base.html" %}
 
 {% block content %}
+
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
-			<div class="card-header">
-				<h3>Sign Up </h3>
-				<div class="test">
-				</div>
+			<div class="logo">
+				<img width=100 src='{% static "images/PyJam.png" %}' >
 			</div>
+			<div class="card-header">
+				
+				<h3>Sign Up </h3>
+				</div>
+				<div class="test">
+
+				</div>
 			<div class="card-body">
 				<form>
 					<div class="input-group form-group">
@@ -16,14 +23,12 @@
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						<input type="firstname" class="form-control" placeholder="First Name">
-
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						<input type="lastname" class="form-control" placeholder="Last Name">
-
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
@@ -39,27 +44,35 @@
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+							<span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
 						</div>
-						<input type="gender" class="form-control" placeholder="Gender">
+						<input type="date" id="start" name="trip-start" class="form-control"
+       min="1900-01-01" max="2006-02-14">
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
-						</div>
-						<input type="birthday" class="form-control" placeholder="Birthday">
+							<span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+							</div>
+						<form action="" method="post">
+							<div class="row align-items-center remember">
+					  <input type="radio" class="gender" name="male" value="male" /> Male
+					  <input type="radio" class="gender" name="female" value="female" /> Female
+					  <input type="radio" class="gender" name="other" value="other" /> Other
+					</form>
+						<!-- <input type="gender" class="form-control" placeholder="Gender"> -->
 					</div>
 					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn">
+						<input type="submit" value="Sign-up" class="btn float-right login_btn">
 					</div>
 				</form>
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
-					Already have an account?<a href="#">Sign In</a>
+					Already have an account?<a href="login.html">Sign In</a>
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 	{% endblock %}
