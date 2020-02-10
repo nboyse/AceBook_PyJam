@@ -23,7 +23,7 @@ urlpatterns = [
 
     # Auth Routes   
     path('signup/', views.register, name='register'),
-    # path('logout/', views.logoutuser, name='logoutuser'),
+    path('logout/', views.log_out, name='logout'),
     # path('login/', views.loginuser, name='loginuser'),
 
     #
