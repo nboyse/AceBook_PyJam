@@ -1,7 +1,7 @@
 {% extends "users/base.html" %}
 
 {% block content %}
-{% load staticfiles%}
+{% load static %}
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
@@ -17,19 +17,25 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form target="_blank" action="user_feed.html" method="POST">
+				{% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+				<form method="POST">
+					{% csrf_token %}
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-envelope-open"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="Email Address">
+						<input type="text" class="form-control" placeholder="Username" name="username">
 
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="Password">
+						<input type="password" class="form-control" placeholder="Password" name="password">
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me

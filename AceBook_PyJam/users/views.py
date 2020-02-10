@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
-def home(req):
+def home(req): # route landing page, home for non users
     return render(req, 'users/index.html')
 
 
@@ -27,21 +27,43 @@ def register(req):
             try:
                 user = User.objects.create_user(req.POST['username'], password=req.POST['password1'])
                 user.save()
-                # login(req, user)
+                login(req, user)
                 return redirect('home')
             except IntegrityError:
-                 return render(req, 'users/temp_register.html', {
-                'form': UserCreationForm(),
-                'error': "Username has already been taken, please pick another one"
+                return render(req, 'users/temp_register.html', {'form': UserCreationForm(),
+                    'error': "Username has already been taken, please pick another one"
             })
 
         else:
             # Send password error (didnt match)
             return render(req, 'users/temp_register', {
-            'form': UserCreationForm(),
-            'error': "Passwords did not match, please check and try again"
+                'form': UserCreationForm(),
+                'error': "Passwords did not match, please check and try again"
         })
 
 
-def login(req):
-    return render(req, 'users/login.html')
+def log_in(req):
+    if req.method == 'GET':
+        return render(req, 'users/login.html', {
+            'form': AuthenticationForm()
+        })
+    elif req.method == 'POST':
+        user = authenticate(req, username=req.POST['username'], password=req.POST['password'])
+        if user is None:
+            return render(req, 'users/login.html', {
+                'form': AuthenticationForm(),
+                'error': 'Invaid Username/password please try again'
+            })
+        else:
+            login(req, user)
+            return redirect('user-feed')
+
+
+def log_out(req):
+    if req.method == 'POST':
+        logout(req)
+        return redirect('home')
+
+
+def user_feed(req):
+    return render(req, 'users/user_feed.html')

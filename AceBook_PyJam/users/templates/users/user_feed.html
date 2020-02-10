@@ -1,17 +1,7 @@
-<html>
-  <head>
-    <meta name="viewport" content= "width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#a26693">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+{% extends "users/base.html" %}
 
-    <script src='user_feed.js'></script>
-    <link href="user_feed.css" rel="stylesheet" id="bootstrap-css">
-    <link href="user_feed.js" rel="stylesheet" id="bootstrap-js">
-
-
-  </head>
-  <body>
+{% block content %}
+{% load static %}
 
     <div class="allholder">
 
@@ -82,7 +72,7 @@
           <div class="icon-holder"><div class="icon"></div></div>
           <div class="text-holder col-3-5">
             <div class="feed-title">Charlie David</div>
-            <div class="feed-description">Love, live, laugh <3
+            <div class="feed-description">Love, live, laugh
             </div>
           </div><!--End of Text Holder-->
 
@@ -280,6 +270,4 @@
     </div><!--End Register-->
     </div><!--End ActivityForm-->
 
-
-  </body>
-</html>
+    {% endblock %}
