@@ -1,4 +1,8 @@
 /* Made with love by Mutiullah Samim*/
+
+*{
+  color: black !important;
+}
 @import url('https://fonts.googleapis.com/css?family=Numans');
 html,body{
 background-image: url('https://images.unsplash.com/photo-1474540412665-1cdae210ae6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1662&q=80');
