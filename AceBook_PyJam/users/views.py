@@ -25,7 +25,11 @@ def register(req):
     elif req.method == 'POST':
         if req.POST['password1'] == req.POST['password2']:
             try:
-                user = User.objects.create_user(req.POST['username'], password=req.POST['password1'])
+                user = User.objects.create_user(req.POST['username'],
+                                                password=req.POST['password1'],
+                                                email=req.POST['email'],
+                                                first_name=req.POST['first_name'],
+                                                last_name=req.POST['last_name'])
                 user.save()
                 login(req, user)
                 return redirect('home')
