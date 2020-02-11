@@ -1,5 +1,41 @@
 {% extends "users/base.html" %}
 
 {% block content %}
-    {{ form }}
+<div class="container">
+{% if user.is_authenticated %}
+    <h2>Create a new post</h2>
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endif %} 
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Post Title</label>
+            <input type="text" name="post_title" class="form-control" id="post_title" required>
+        </div>
+        <div class="form-group">
+            <label for="post_content">Say something</label>
+            <textarea name="post_content" class="form-control" id="memo" rows="6"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+    <div class="container user_posts">
+    {% for x in posts %}
+    <div class="post">
+    <h2>{{ x.post_title }}</h2>
+    <p>{{ x.post_content }}</p>
+    <p>Post by: {{ x.user }}</p>
+    <p>Posted on: {{ x.post_created|date:'M j Y H:i' }}</p>
+    </div>
+
+    {% endfor %}
+    </div>
+   {% else %}
+
+    <h1>You need to be logged in to view this page</h1>
+    {% endif %}
 {% endblock %}

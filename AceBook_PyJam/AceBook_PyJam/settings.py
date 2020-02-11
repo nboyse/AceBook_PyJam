@@ -127,3 +127,5 @@ STATIC_URL = '/static/'
 STATIC_FILES = [
 
 ]
+
+LOGIN_URL = '/login'
