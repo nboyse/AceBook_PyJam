@@ -1,0 +1,22 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+
+<h1>User Profile Page</h1>
+
+    {% if myposts %}
+    <div class="container user_posts">
+        {% for x in myposts %}
+        <div class="post">
+        <h2>{{ x.post_title }}</h2>
+        <p>{{ x.post_content }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+
+    <p>Looks like you have not posted anything, when you do, your posts will show here</p>
+
+    {% endif %}
+
+{% endblock %}

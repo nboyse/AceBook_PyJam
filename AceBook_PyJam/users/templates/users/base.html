@@ -20,25 +20,25 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                         <li class="nav-item ">
-                            <a class="nav-link" href="{% url 'user-feed' %}">Home</a>
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
                         </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'about' %}">About</a>
                         </li>
-        
                 </ul>
+
             <ul class="navbar-nav ml-auto">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a href="#" onclick="$('#signOutBtn').click()" class="nav-link">Logout</a>
+                            <a href="#" onclick="$('#signOutBtn').click()" class="nav-link"><b>Logout {{ user }}</b></a>
                             <form style='display: none;' method="POST" action="{% url 'logout' %}">
                                 {% csrf_token %}
-                                <button id="signOutBtn" type="submit">Logout</button>
+                                <button id="signOutBtn" type="submit"></button>
                             </form>
                         </li>
                         {% else%}

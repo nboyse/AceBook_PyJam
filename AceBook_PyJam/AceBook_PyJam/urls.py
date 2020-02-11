@@ -20,13 +20,17 @@ from users import views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('about', views.about, name='about'),
+    path('profile', views.profile, name='profile'),
 
     # Auth Routes   
     path('signup/', views.register, name='register'),
     path('logout/', views.log_out, name='logout'),
-    # path('login/', views.loginuser, name='loginuser'),
+    path('login/', views.log_in, name='login'),
 
-    #
+    # Admin
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls'))
+
+    # User Views
+    # path('users/', include('users.urls'))
 ]
