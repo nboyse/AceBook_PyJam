@@ -23,9 +23,10 @@
     </form>
 </div>
 
+{#    Need to be syled #}
     <div class="container user_posts">
     {% for x in posts %}
-    <div class="post">
+    <div class="post" id="{{ x.id }}">
     <h2>{{ x.post_title }}</h2>
     <p>{{ x.post_content }}</p>
     <p>Post by: {{ x.user }}</p>

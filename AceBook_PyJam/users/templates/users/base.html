@@ -11,7 +11,7 @@
     <nav class="navbar navbar-expand-md navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                 <img src="{% static 'images/PyJam.png' %}" width="30" height="30" class="d-inline-block align-top">
+                 <img src="{% if user.is_authenticated and user.profile.image%} {{ user.profile.image.url  }} {% else%} {% static 'images/PyJam.png' %}{% endif %}" width="30" height="30" style="border-radius: 50px" class="d-inline-block align-top">
                 <span>AceBook - PyJam</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,6 +25,9 @@
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'updateprofile' %}">Edit Profile</a>
                         </li>
                         {% endif %}
                         <li class="nav-item">
