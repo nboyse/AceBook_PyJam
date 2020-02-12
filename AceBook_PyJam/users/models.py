@@ -30,7 +30,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=30, blank=True)
-    image = models.ImageField(upload_to='images/')
+    image = models.FileField(upload_to='images/')
     url = models.URLField(blank=True)
 
 
