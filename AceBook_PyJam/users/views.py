@@ -9,6 +9,12 @@ from .forms import PostsForm, ReplyForm, ProfileForm, UserForm
 from .models import Posts, PostsReplies
 
 
+def handle_uploaded_file(f):
+    # with open(f, 'wb+') as destination:
+    for chunk in f.chunks():
+        f.write(chunk)
+
+
 def home(req):  # route landing page, home for non users
     if req.method == 'GET':
         posts = Posts.objects.order_by('-post_created')
@@ -22,6 +28,10 @@ def home(req):  # route landing page, home for non users
             return redirect('home')
         except ValueError:
             return render(req, 'users/index.html', {'form': PostsForm(), 'error': 'Bad data passed in. Try again.'})
+
+
+def postreply(req):
+    pass
 
 
 def about(req):
@@ -69,11 +79,12 @@ def profile(req):
 # @transaction.atomic
 def update_profile(req):
     if req.method == 'POST':
-        user_form = UserForm(req.POST, instance=req.user)
-        profile_form = ProfileForm(req.POST, instance=req.user.profile)
+        user_form = UserForm(req.POST, instance=req.user, )
+        profile_form = ProfileForm(req.POST, req.FILES, instance=req.user.profile,)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            handle_uploaded_file(req.FILES['image'])
             return redirect('profile')
         else:
             pass
@@ -86,12 +97,13 @@ def update_profile(req):
     })
 
 
-def deletepost(req):
+def deletepost(req, pk):
     if req.method == 'POST':
         post_id = (int(req.POST.get('item_id')))
         post = Posts.objects.get(id=post_id)
         post.delete()
         return redirect('home')
+        profile = User.objects.get(id=pk)
 
 
 def log_in(req):
