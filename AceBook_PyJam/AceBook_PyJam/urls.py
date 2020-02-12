@@ -27,6 +27,7 @@ urlpatterns = [
     path('profile', views.profile, name='profile'),
     path('updateprofile', views.update_profile, name='updateprofile'),
     path('delete', views.deletepost, name='deletepost'),
+    path('postreply', views.postreply, name='postreply'),
 
 
     # Auth Routes   

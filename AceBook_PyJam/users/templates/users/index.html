@@ -31,6 +31,7 @@
     <p>{{ x.post_content }}</p>
     <p>Post by: {{ x.user }}</p>
     <p>Posted on: {{ x.post_created|date:'M j Y H:i' }}</p>
+        <a href="{% url 'postreply' %}">Reply</a>
     </div>
 
     {% endfor %}
