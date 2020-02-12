@@ -31,7 +31,7 @@ def home(req):  # route landing page, home for non users
 
 
 def postreply(req):
-    pass
+    return render(req, 'users/postreply.html')
 
 
 def about(req):
