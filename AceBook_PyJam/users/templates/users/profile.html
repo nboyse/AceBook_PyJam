@@ -2,18 +2,14 @@
 
 {% block content %}
 
-<h1>User Profile Page</h1>
+<h1>@{{ f_user }}</h1>
+
     {% if myposts %}
     <div class="container user_posts">
         {% for x in myposts %}
-        <div class="profile">
+        <div class="post">
         <h2>{{ x.post_title }}</h2>
         <p>{{ x.post_content }}</p>
-        <form action="{% url 'deletepost' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="item_id" value="{{x.id}}" />
-        <input type="submit" value="Delete Me">
-        </form>
         </div>
         {% endfor %}
     </div>
@@ -22,6 +18,5 @@
     <p>Looks like you have not posted anything, when you do, your posts will show here</p>
 
     {% endif %}
-
 
 {% endblock %}

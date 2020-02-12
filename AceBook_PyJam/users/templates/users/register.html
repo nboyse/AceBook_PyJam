@@ -1,57 +1,78 @@
+
 {% extends "users/base.html" %}
 
 {% block content %}
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5">
-            <h2>Sign Up</h2>
-        </div>
-    </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5">
-            {% if error %}
-                <div class="alert alert-danger" role="alert">
-                    {{ error }}
-                </div>
-            {% endif %}
-            <form method="POST">
-                {% csrf_token %}
-                <div class="input-group form-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    </div>
-                    <input type="firstname" class="form-control" placeholder="First Name" name="first_name">
-                </div>
-                <div class="input-group form-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    </div>
-                    <input type="lastname" class="form-control" placeholder="Last Name" name="last_name">
-                </div>
-                <div class="input-group form-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-envelope-open"></i></span>
-                    </div>
-                    <input type="email" class="form-control" placeholder="Email" name="email">
-                </div>
-                <div class="input-group form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp">
-                    <small id="usernameHelp" class="form-text text-muted">Your username must be unique. We'll let you know if someone has taken it already.</small>
-                </div>
-                <div class="input-group form-group">
-                    <label for="password1">Password</label>
-                    <input type="password" name="password1" class="form-control" id="password1">
-                </div>
-                <div class="input-group form-group">
-                    <label for="password2">Confirm Password</label>
-                    <input type="password" name="password2" class="form-control" id="password2">
-                </div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
-            </form>
-            <hr>
-            <div class="text-center">
-                Do you already have an account? <a href="{% url 'login' %}">Login here</a>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+{% load staticfiles%}
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="logo">
+				<img width=100 src='{% static "images/PyJam.png" %}' >
+			</div>
+			<div class="card-header">
+				
+				<h3>Sign Up </h3>
+				</div>
+				<div class="test">
+
+				</div>
+			<div class="card-body">
+				<form>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="firstname" class="form-control" placeholder="First Name">
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="lastname" class="form-control" placeholder="Last Name">
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-envelope-open"></i></span>
+						</div>
+						<input type="email" class="form-control" placeholder="Email">
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control" placeholder="Password">
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-birthday-cake"></i></span>
+						</div>
+						<input type="date" id="start" name="trip-start" class="form-control"
+       min="1900-01-01" max="2006-02-14">
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+							</div>
+						<form action="" method="post">
+							<div class="row align-items-center remember">
+					  <input type="radio" class="gender" name="male" value="male" /> Male
+					  <input type="radio" class="gender" name="female" value="female" /> Female
+					  <input type="radio" class="gender" name="other" value="other" /> Other
+					</form>
+						<!-- <input type="gender" class="form-control" placeholder="Gender"> -->
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Sign-up" class="btn float-right login_btn">
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Already have an account?<a href="login.html">Sign In</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	{% endblock %}

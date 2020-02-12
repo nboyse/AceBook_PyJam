@@ -5,20 +5,19 @@ from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from .forms import PostsForm, ReplyForm, ProfileForm, UserForm
-from .models import Posts, PostsReplies
-
-
-def handle_uploaded_file(f):
-    # with open(f, 'wb+') as destination:
-    for chunk in f.chunks():
-        f.write(chunk)
+from .forms import PostsForm
+from .models import Posts, Friend
 
 
 def home(req):  # route landing page, home for non users
     if req.method == 'GET':
         posts = Posts.objects.order_by('-post_created')
-        return render(req, 'users/index.html', {'form': PostsForm(), 'posts': posts, 'user': req.user})
+        users = User.objects.exclude(id=req.user.id)
+        friend = Friend.objects.filter(current_user=req.user.id)[0]
+        friends = friend.users.all()
+
+        print(friends)
+        return render(req, 'users/index.html', {'form': PostsForm(), 'posts': posts, 'user': req.user, 'users': users, 'friends': friends})
     else:
         try:
             form = PostsForm(req.POST)
@@ -30,17 +29,13 @@ def home(req):  # route landing page, home for non users
             return render(req, 'users/index.html', {'form': PostsForm(), 'error': 'Bad data passed in. Try again.'})
 
 
-def postreply(req):
-    return render(req, 'users/postreply.html')
-
-
 def about(req):
     return render(req, 'users/about.html')
 
 
 def register(req):
     if req.method == 'GET':
-        return render(req, 'users/register.html', {
+        return render(req, 'users/temp_register.html', {
             'form': UserCreationForm()
         })
     elif req.method == 'POST':
@@ -55,55 +50,27 @@ def register(req):
                 login(req, user)
                 return redirect('home')
             except IntegrityError:
-                return render(req, 'users/register.html', {'form': UserCreationForm(),
+                return render(req, 'users/temp_register.html', {'form': UserCreationForm(),
                                                                 'error': "Username has already been taken, please "
                                                                          "pick another one "
-                                                           })
+                                                                })
 
         else:
             # Send password error (didnt match)
-            return render(req, 'users/register.html', {
+            return render(req, 'users/temp_register.html', {
                 'form': UserCreationForm(),
                 'error': "Passwords did not match, please check and try again"
             })
 
 
 @login_required
-def profile(req):
-    myposts = Posts.objects.filter(user=req.user).order_by('-post_created')
-    # user = User.objects.get(id=req.user.id)
-    return render(req, 'users/profile.html', {'myposts': myposts})
-
-
-@login_required
-# @transaction.atomic
-def update_profile(req):
-    if req.method == 'POST':
-        user_form = UserForm(req.POST, instance=req.user, )
-        profile_form = ProfileForm(req.POST, req.FILES, instance=req.user.profile,)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            handle_uploaded_file(req.FILES['image'])
-            return redirect('profile')
-        else:
-            pass
+def profile(req, pk=None):
+    if pk:
+        f_user = User.objects.get(pk=pk)
     else:
-        user_form = UserForm(instance=req.user)
-        profile_form = ProfileForm(instance=req.user.profile)
-    return render(req, 'users/edit_profile.html', {
-        'user_form': user_form,
-        'profile_form': profile_form
-    })
-
-
-def deletepost(req, pk):
-    if req.method == 'POST':
-        post_id = (int(req.POST.get('item_id')))
-        post = Posts.objects.get(id=post_id)
-        post.delete()
-        return redirect('home')
-        profile = User.objects.get(id=pk)
+        f_user = req.user
+    myposts = Posts.objects.filter(user=f_user).order_by('-post_created')
+    return render(req, 'users/profile.html', {'myposts': myposts, 'f_user': f_user})
 
 
 def log_in(req):
@@ -128,6 +95,11 @@ def log_out(req):
         logout(req)
         return redirect('home')
 
-#
-# def user_feed(req):
-#     return render(req, 'users/user_feed.html')
+
+def manage_friends(req, operation, pk):
+    friend = User.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.add_friend(req.user, friend)
+    elif operation == 'remove':
+        Friend.remove_friend(req.user, friend)
+    return redirect('home')

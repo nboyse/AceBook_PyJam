@@ -23,18 +23,32 @@
     </form>
 </div>
 
-{#    Need to be syled #}
     <div class="container user_posts">
     {% for x in posts %}
-    <div class="post" id="{{ x.id }}">
+    <div class="post">
     <h2>{{ x.post_title }}</h2>
     <p>{{ x.post_content }}</p>
     <p>Post by: {{ x.user }}</p>
     <p>Posted on: {{ x.post_created|date:'M j Y H:i' }}</p>
-        <a href="{% url 'postreply' %}">Reply</a>
+    </div>
+    {% endfor %}
+
+    <div class="col-md-4">
+    <h2>Friends</h2>
+    {% for f in friends %}
+    <a href="{% url 'profile_pk' pk=user.pk %}">
+    <h3>{{ f.username }}</h3>
+    </a>
+    {% endfor %}
     </div>
 
-    {% endfor %}
+    <div class="col-md-4">
+    <h2>Suggested Friends</h2>
+        {% for user in users %}
+        <a href="{% url 'profile_pk' pk=user.pk %}">
+        <h3>{{ user.username }}</h3>
+        </a>
+        {% endfor %}
     </div>
    {% else %}
 

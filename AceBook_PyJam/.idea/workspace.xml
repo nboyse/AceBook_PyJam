@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d663b11-ae3a-4b21-8e05-4e30ee930faf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/users/templates/users/postreply.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/templates/users/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AceBook_PyJam/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AceBook_PyJam/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AceBook_PyJam/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AceBook_PyJam/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/static/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/users/static/css/register.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/templates/users/user_feed.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/user_feed.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,16 +31,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/media" />
-    </key>
   </component>
   <component name="RunManager">
     <configuration name="AceBook_PyJam" type="Python.DjangoServer" factoryName="Django server">
@@ -42,7 +42,6 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="DJANGO_SETTINGS_MODULE" value="AceBook_PyJam.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -71,36 +70,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581363590719</updated>
-      <workItem from="1581363595030" duration="5231000" />
-      <workItem from="1581411613724" duration="1302000" />
-      <workItem from="1581413420035" duration="17418000" />
-      <workItem from="1581501844248" duration="565000" />
-      <workItem from="1581508088277" duration="5217000" />
+      <workItem from="1581363595030" duration="5039000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="2004" height="352" key="GridCell.Tab.0.bottom" timestamp="1581463397030">
-      <screen x="0" y="0" width="2048" height="1280" />
-    </state>
-    <state width="2004" height="352" key="GridCell.Tab.0.bottom/0.0.2048.1280@0.0.2048.1280" timestamp="1581463397030" />
-    <state width="2004" height="352" key="GridCell.Tab.0.center" timestamp="1581463397030">
-      <screen x="0" y="0" width="2048" height="1280" />
-    </state>
-    <state width="2004" height="352" key="GridCell.Tab.0.center/0.0.2048.1280@0.0.2048.1280" timestamp="1581463397030" />
-    <state width="2004" height="352" key="GridCell.Tab.0.left" timestamp="1581463397029">
-      <screen x="0" y="0" width="2048" height="1280" />
-    </state>
-    <state width="2004" height="352" key="GridCell.Tab.0.left/0.0.2048.1280@0.0.2048.1280" timestamp="1581463397029" />
-    <state width="2004" height="352" key="GridCell.Tab.0.right" timestamp="1581463397030">
-      <screen x="0" y="0" width="2048" height="1280" />
-    </state>
-    <state width="2004" height="352" key="GridCell.Tab.0.right/0.0.2048.1280@0.0.2048.1280" timestamp="1581463397030" />
   </component>
 </project>
