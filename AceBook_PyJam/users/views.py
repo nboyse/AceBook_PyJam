@@ -6,14 +6,18 @@ from django.contrib.auth import login, logout, authenticate
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .forms import PostsForm
-from .models import Posts
+from .models import Posts, Friend
 
 
 def home(req):  # route landing page, home for non users
     if req.method == 'GET':
         posts = Posts.objects.order_by('-post_created')
-        print(posts)
-        return render(req, 'users/index.html', {'form': PostsForm(), 'posts': posts, 'user': req.user})
+        users = User.objects.exclude(id=req.user.id)
+        friend = Friend.objects.filter(current_user=req.user.id)[0]
+        friends = friend.users.all()
+
+        print(friends)
+        return render(req, 'users/index.html', {'form': PostsForm(), 'posts': posts, 'user': req.user, 'users': users, 'friends': friends})
     else:
         try:
             form = PostsForm(req.POST)
@@ -60,9 +64,13 @@ def register(req):
 
 
 @login_required
-def profile(req):
-    myposts = Posts.objects.filter(user=req.user).order_by('-post_created')
-    return render(req, 'users/profile.html', {'myposts': myposts})
+def profile(req, pk=None):
+    if pk:
+        f_user = User.objects.get(pk=pk)
+    else:
+        f_user = req.user
+    myposts = Posts.objects.filter(user=f_user).order_by('-post_created')
+    return render(req, 'users/profile.html', {'myposts': myposts, 'f_user': f_user})
 
 
 def log_in(req):
@@ -87,6 +95,11 @@ def log_out(req):
         logout(req)
         return redirect('home')
 
-#
-# def user_feed(req):
-#     return render(req, 'users/user_feed.html')
+
+def manage_friends(req, operation, pk):
+    friend = User.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.add_friend(req.user, friend)
+    elif operation == 'remove':
+        Friend.remove_friend(req.user, friend)
+    return redirect('home')

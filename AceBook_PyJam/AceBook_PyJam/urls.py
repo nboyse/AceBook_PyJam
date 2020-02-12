@@ -15,15 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
 
 from users import views
 
 urlpatterns = [
     path('', views.home, name='home'),
     path('about', views.about, name='about'),
-    path('profile', views.profile, name='profile'),
-
-    # Auth Routes   
+    url(r'^profile/$', views.profile, name='profile'),
+    url(r'^profile/(?P<pk>\d+)/$', views.profile, name='profile_pk'),
+    
+    # Auth Routes
     path('signup/', views.register, name='register'),
     path('logout/', views.log_out, name='logout'),
     path('login/', views.log_in, name='login'),
