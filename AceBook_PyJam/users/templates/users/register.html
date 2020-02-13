@@ -1,13 +1,19 @@
 {% extends "users/base.html" %}
 
 {% block content %}
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5">
-            <h2>Sign Up</h2>
+{% load static %}
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="logo">
+				<img width=100 src='{% static "images/PyJam.png" %}' >
+			</div>
+			<div class="card-header">
+            <h3>Sign Up</h3>
+            <div class="d-flex justify-content-end social_icon">
         </div>
     </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-5">
+    <div class="card-body">
             {% if error %}
                 <div class="alert alert-danger" role="alert">
                     {{ error }}
@@ -46,20 +52,24 @@
                   <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-key"></i></span>
                       </div>
-                      <input type="password1" class="form-control" placeholder="Password" name="password1">
+                      <input type="password" class="form-control" placeholder="Password" name="password1">
                 </div>
                 <div class="input-group form-group">
                   <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-key"></i></span>
                       </div>
-                      <input type="password2" class="form-control" placeholder="Confirm Password" name="password2">
+                      <input type="password" class="form-control" placeholder="Confirm Password" name="password2">
                 </div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <div class="form-group">
+                <input type="submit" value="Sign up" class="btn float-right login_btn">
+                </div>
             </form>
-            <hr>
-            <div class="text-center">
-                Do you already have an account? <a href="{% url 'login' %}">Login here</a>
             </div>
+            <div class="card-footer">
+      				<div class="d-flex justify-content-center links">
+      					Already have an account?<a href='{% url "login" %}'>Sign In</a>
+              </div>
         </div>
+    </div>
     </div>
 {% endblock %}
