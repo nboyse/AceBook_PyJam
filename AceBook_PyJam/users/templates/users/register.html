@@ -17,13 +17,13 @@
                 {% csrf_token %}
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text"><i class="fas fa-address-book"></i></span>
                     </div>
                     <input type="firstname" class="form-control" placeholder="First Name" name="first_name">
                 </div>
                 <div class="input-group form-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <span class="input-group-text"><i class="far fa-address-book"></i></span>
                     </div>
                     <input type="lastname" class="form-control" placeholder="Last Name" name="last_name">
                 </div>
@@ -34,17 +34,25 @@
                     <input type="email" class="form-control" placeholder="Email" name="email">
                 </div>
                 <div class="input-group form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
+                      </div>
+                      <input type="username" class="form-control" placeholder="Username" name="username">
+                    <!-- <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp"> -->
+                    </div>
                     <small id="usernameHelp" class="form-text text-muted">Your username must be unique. We'll let you know if someone has taken it already.</small>
+                    <p> </p>
+                    <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                      </div>
+                      <input type="password1" class="form-control" placeholder="Password" name="password1">
                 </div>
                 <div class="input-group form-group">
-                    <label for="password1">Password</label>
-                    <input type="password" name="password1" class="form-control" id="password1">
-                </div>
-                <div class="input-group form-group">
-                    <label for="password2">Confirm Password</label>
-                    <input type="password" name="password2" class="form-control" id="password2">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                      </div>
+                      <input type="password2" class="form-control" placeholder="Confirm Password" name="password2">
                 </div>
                 <button type="submit" class="btn btn-primary">Sign Up</button>
             </form>
