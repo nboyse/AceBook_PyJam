@@ -35,6 +35,36 @@
             <div class="col-lg-6 pl-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294928/tim-foster-734470-unsplash_xqde00.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
         </div>
         <div class="py-4">
+            <h5 class="mb-3">Friends</h5>
+            <div class="p-4 bg-light rounded shadow-sm">
+                {% for friend in friends %}
+                <p class="font-italic mb-0" style="font-size: 1.5rem">
+                <a href="{% url 'profile_pk' pk=friend.pk %}">
+                    <h3>{{ friend.username }}</h3>
+                </a></p>
+                <a href="{% url 'manage_friends' operation='remove' pk=friend.pk %}">
+                <button type="button" class="btn btn-default">Remove Friend</button>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="py-4">
+            <h5 class="mb-3">Siggested Friends</h5>
+            <div class="p-4 bg-light rounded shadow-sm">
+                {% for user in users %}
+                <p class="font-italic mb-0" style="font-size: 1.5rem">
+                <a href="{% url 'profile_pk' pk=user.pk %}">
+                    <h3>{{ user.username }}</h3>
+                </a></p>
+                {% if not user in friends %}
+                <a href="{% url 'manage_friends' operation='add' pk=user.pk %}">
+                <button type="button" class="btn btn-default">Add Friend</button>
+                </a>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+        <div class="py-4">
             <h5 class="mb-3">Recent posts</h5>
             <div class="p-4 bg-light rounded shadow-sm">
                     {% if myposts %}
