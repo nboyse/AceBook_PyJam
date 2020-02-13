@@ -35,6 +35,25 @@
     </div>
 
     {% endfor %}
+
+    <!-- <div class="col-md-4">
+        <h2>Friends</h2>
+        {% for f in friends %}
+        <a href="{% url 'profile_pk' pk=user.pk %}">
+        <h3>{{ f.username }}</h3>
+        </a>
+        {% endfor %}
+        </div> -->
+    
+        <div class="col-md-4">
+        <h2>Suggested Friends</h2>
+            {% for user in users %}
+            <a href="{% url 'profile_pk' pk=user.pk %}">
+            <h3>{{ user.username }}</h3>
+            </a>
+            {% endfor %}
+        </div>
+
     </div>
    {% else %}
 
