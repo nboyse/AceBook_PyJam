@@ -19,11 +19,15 @@ def home(req):  # route landing page, home for non users
     if req.method == 'GET':
         posts = Posts.objects.order_by('-post_created')
         users = User.objects.exclude(id=req.user.id)
-        # friend = Friend.objects.filter(current_user=req.user.id)[0]
-        # friends = friend.users.all()
+        if (Friend.objects.filter(current_user=req.user.id)):
+            friend = Friend.objects.filter(current_user=req.user.id)[0]
+            friends = friend.users.all()
+            return render(req, 'users/index.html', {'form': PostsForm(), 'posts': posts, 'user': req.user, 'users': users, 'friends': friends})
 
+        else:
+            friend = ""
         # print(friends)
-        return render(req, 'users/index.html', {'form': PostsForm(), 'posts': posts, 'user': req.user, 'users': users})  # 'friends': friends
+        return render(req, 'users/index.html', {'form': PostsForm(), 'posts': posts, 'user': req.user, 'users': users})
     else:
         try:
             form = PostsForm(req.POST)

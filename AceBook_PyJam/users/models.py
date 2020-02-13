@@ -47,10 +47,10 @@ def save_user_profile(sender, instance, **kwargs):
 
 class Friend(models.Model):
     users = models.ManyToManyField(User)
-    current_user = models.ForeignKey(User,
-                                     related_name='owner',
-                                     null=True,
-                                     on_delete=models.CASCADE)
+    current_user = models.OneToOneField(User,
+                                        related_name='owner',
+                                        null=True,
+                                        on_delete=models.CASCADE)
 
     @classmethod
     def add_friend(cls, current_user, new_friend):
