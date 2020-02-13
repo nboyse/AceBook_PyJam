@@ -28,7 +28,8 @@ urlpatterns = [
     path('updateprofile', views.update_profile, name='updateprofile'),
     path('delete', views.deletepost, name='deletepost'),
     path('postreply', views.postreply, name='postreply'),
-
+    url(r'^connect/(?P<operation>.+)/(?P<pk>\d+)/$', views.manage_friends,
+        name='manage_friends'),
 
     # Auth Routes   
     path('signup/', views.register, name='register'),
