@@ -230,6 +230,3 @@ $('#newActivity').submit(function(event){
     alert("You have logged out.")
   })
 })
-
-
-  
