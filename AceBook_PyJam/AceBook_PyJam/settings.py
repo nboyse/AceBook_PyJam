@@ -78,7 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pyjam',
-        'USER': 'ands',
+        'USER': 'aaron',
         'PASSWORD': ' ',
         'HOST': '127.0.0.1',
         'PORT': '5432',

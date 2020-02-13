@@ -116,7 +116,7 @@ def deletepost(req, pk):
         post = Posts.objects.get(id=post_id)
         post.delete()
         return redirect('home')
-        profile = User.objects.get(id=pk)
+        # profile = User.objects.get(id=pk)
 
 
 def log_in(req):
