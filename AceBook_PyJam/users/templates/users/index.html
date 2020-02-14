@@ -1,70 +1,62 @@
 {% extends "users/base.html" %}
-
+{% load static %}
 {% block content %}
-<div class="container">
+
 {% if user.is_authenticated %}
-    <h2>Create a new post</h2>
-    {% if error %}
-    <div class="alert alert-danger" role="alert">
-        {{ error }}
+    <div class="container pt-5">
+    <h2 style="text-align: center">Create a new post</h2>
+    <div class="container d-flex justify-content-center">
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Post Title</label>
+                <input type="text" name="post_title" class="form-control" id="post_title" required>
+            </div>
+            <div class="form-group">
+                <label for="post_content">Say something</label>
+                <textarea name="post_content" class="form-control" id="memo" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
     </div>
-    {% endif %} 
-    <form method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="title">Post Title</label>
-            <input type="text" name="post_title" class="form-control" id="post_title" required>
-        </div>
-        <div class="form-group">
-            <label for="post_content">Say something</label>
-            <textarea name="post_content" class="form-control" id="memo" rows="6"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
 </div>
 
-{#    Need to be syled #}
-    <div class="container user_posts">
-    {% for x in posts %}
-    <div class="post" id="{{ x.id }}">
-    <h2>{{ x.post_title }}</h2>
-    <p>{{ x.post_content }}</p>
-    <p>Post by: {{ x.user }}</p>
-    <p>Posted on: {{ x.post_created|date:'M j Y H:i' }}</p>
-        <a href="{% url 'postreply' %}">Reply</a>
+<div class="row d-flex justify-content-center" >
+{% for x in posts %}
+  <div class="col-sm-5" style="margin: 10px">
+
+    <div class="card h-100">
+
+      <div class="card-body" id="{{ x.id }}">
+        <h5 class="card-title">{{ x.post_title }}</h5>
+        <p class="card-text">{{ x.post_content }}</p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Post by: {{ x.user }}</li>
+                <li class="list-group-item">Posted on: {{ x.post_created|date:'M j Y H:i' }}</li>
+            </ul>
+      </div>
     </div>
+  </div>
+{% endfor %}
+</div>
 
-    {% endfor %}
+{% else %}
 
-    <div class="col-md-4">
-        <h2>Friends</h2>
-        {% for friend in friends %}
-            <a href="{% url 'profile_pk' pk=friend.pk %}">
-                <h3>{{ friend.username }}</h3>
-            </a>
-            <a href="{% url 'manage_friends' operation='remove' pk=friend.pk %}">
-            <button type="button" class="btn btn-default">Remove Friend</button>
-            </a>
-        {% endfor %}
-        </div>
-    
-        <div class="col-md-4">
-        <h2>Suggested Friends</h2>
-             {% for user in users %}
-            <a href="{% url 'profile_pk' pk=user.pk %}">
-                <h3>{{ user.username }}</h3>
-            </a>
-            {% if not user in friends %}
-            <a href="{% url 'manage_friends' operation='add' pk=user.pk %}">
-            <button type="button" class="btn btn-default">Add Friend</button>
-            </a>
-            {% endif %}
-        {% endfor %}
-        </div>
+<div class="jumbotron" style="margin: 10px">
+  <h2 class="display-5">You need to be logged in to view this page</h2>
+  <p class="lead">Welcome to AceBook, created by Aaron, Anne and Natasha. Please create a new account by clicking the sign up button or signing in if you have an account already</p>
+  <hr class="my-4">
+  <p>Once logged in you will be able to see the latest posts</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Sign in</a>
+  </p>
+</div>
 
-    </div>
-   {% else %}
-
-    <h1>You need to be logged in to view this page</h1>
+    <h1></h1>
     {% endif %}
 {% endblock %}
