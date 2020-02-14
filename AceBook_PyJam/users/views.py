@@ -153,4 +153,4 @@ def manage_friends(req, operation, pk):
         Friend.add_friend(req.user, friend)
     elif operation == 'remove':
         Friend.remove_friend(req.user, friend)
-    return redirect('home')
+    return redirect('profile')
