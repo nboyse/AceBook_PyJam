@@ -1,0 +1,14 @@
+html,body{
+/* background-image: url('https://images.unsplash.com/photo-1474540412665-1cdae210ae6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1662&q=80'); */
+background-image: url('{% static "images/background.jpeg" %}') no-repeat center center fixed;
+
+
+}
+
+h5,.text-muted{
+  color: black !important;
+}
+
+.mb-4,.mr-2{
+  color: white;
+}
