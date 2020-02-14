@@ -9,6 +9,10 @@ from .forms import PostsForm, ReplyForm, ProfileForm, UserForm
 from .models import Posts, PostsReplies, Friend
 
 
+# Note for readers of the code in the future, users refers to the currently logged in user with the exception of friends, on the profile page, 
+# f_user refers to the current user and users is swapped to work in the friends list 🤷
+
+
 def handle_uploaded_file(f):
     # with open(f, 'wb+') as destination:
     for chunk in f.chunks():
@@ -19,14 +23,7 @@ def home(req):  # route landing page, home for non users
     if req.method == 'GET':
         posts = Posts.objects.order_by('-post_created')
         users = User.objects.exclude(id=req.user.id)
-        if (Friend.objects.filter(current_user=req.user.id)):
-            friend = Friend.objects.filter(current_user=req.user.id)[0]
-            friends = friend.users.all()
-            return render(req, 'users/index.html', {'form': PostsForm(), 'posts': posts, 'user': req.user, 'users': users, 'friends': friends})
-
-        else:
-            friend = ""
-        # print(friends)
+    
         return render(req, 'users/index.html', {'form': PostsForm(), 'posts': posts, 'user': req.user, 'users': users})
     else:
         try:
@@ -80,12 +77,20 @@ def register(req):
 @login_required
 def profile(req, pk=None):
     if pk:
-        f_user = User.objects.get(pk=pk)
+        user = User.objects.get(pk=pk)
     else:
-        f_user = req.user
-    myposts = Posts.objects.filter(user=f_user).order_by('-post_created')
-    # user = User.objects.get(id=req.user.id)
-    return render(req, 'users/profile.html', {'myposts': myposts, 'f_user': f_user})
+        user = req.user
+
+    users = User.objects.exclude(id=req.user.id)
+    myposts = Posts.objects.filter(user=user).order_by('-post_created')
+
+    if (Friend.objects.filter(current_user=req.user.id)):
+        friend = Friend.objects.filter(current_user=req.user.id)[0]
+        friends = friend.users.all()
+        return render(req, 'users/profile.html', {'myposts': myposts, 'users': users, 'user': user, 'friends': friends})
+    else:
+        friends = ""
+        return render(req, 'users/profile.html', {'myposts': myposts, 'user': user, 'friends': friends, 'users': users})
 
 
 @login_required
@@ -110,13 +115,13 @@ def update_profile(req):
     })
 
 
-def deletepost(req, pk):
+def deletepost(req):
     if req.method == 'POST':
         post_id = (int(req.POST.get('item_id')))
         post = Posts.objects.get(id=post_id)
         post.delete()
         return redirect('home')
-        profile = User.objects.get(id=pk)
+        # profile = User.objects.get(id=pk)
 
 
 def log_in(req):
