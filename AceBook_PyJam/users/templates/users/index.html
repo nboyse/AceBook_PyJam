@@ -5,6 +5,7 @@
 {% if user.is_authenticated %}
     <div class="container pt-5">
     <h2 style="text-align: center">Create a new post</h2>
+    <p></p>
     <div class="container d-flex justify-content-center">
         {% if error %}
         <div class="alert alert-danger" role="alert">
@@ -14,11 +15,11 @@
         <form method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <label for="title">Post Title</label>
+                <label for="title" class="post_color">Post Title</label>
                 <input type="text" name="post_title" class="form-control" id="post_title" required>
             </div>
             <div class="form-group">
-                <label for="post_content">Say something</label>
+                <label for="post_content" class="post_color">Say something</label>
                 <textarea name="post_content" class="form-control" id="memo" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
