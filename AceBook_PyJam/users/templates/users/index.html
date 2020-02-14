@@ -3,10 +3,12 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <div class="container pt-5">
-    <h2 style="text-align: center">Create a new post</h2>
-    <p></p>
-    <div class="container d-flex justify-content-center">
+<div class="bg-white mt-5 shadow rounded overflow-hidden t-5">
+      <div class="px-4 pb-4 bg-dark">
+        <div class="media align-items-end profile-header">
+          <div class="profile mr-3"><img src="{% if user.profile.image%} {{ user.profile.image.url }} {% else%} {% static 'images/PyJam.png' %} {% endif %}" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
+          <div class="media-body mt-5 ml-5 text-white">
+    <div>
         {% if error %}
         <div class="alert alert-danger" role="alert">
             {{ error }}
@@ -15,18 +17,20 @@
         <form method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <label for="title" class="post_color">Post Title</label>
+                <label for="title">Post Title</label>
                 <input type="text" name="post_title" class="form-control" id="post_title" required>
             </div>
             <div class="form-group">
-                <label for="post_content" class="post_color">Say something</label>
+                <label for="post_content">Say something</label>
                 <textarea name="post_content" class="form-control" id="memo" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 </div>
-
+</div>
+      </div>
+</div>
 <div class="row d-flex justify-content-center" >
 {% for x in posts %}
   <div class="col-sm-5" style="margin: 10px">
@@ -58,6 +62,6 @@
   </p>
 </div>
 
-    <h1></h1>
+
     {% endif %}
 {% endblock %}

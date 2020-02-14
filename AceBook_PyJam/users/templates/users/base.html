@@ -12,7 +12,7 @@
         <div class="container">
             <a class="navbar-brand" href="#">
                  <img src="{% if user.is_authenticated and user.profile.image%} {{ user.profile.image.url  }} {% else%} {% static 'images/PyJam.png' %}{% endif %}" width="30" height="30" style="border-radius: 50px" class="d-inline-block align-top">
-                <span>AceBook - PyJam</span>
+                <span style="color: black;">AceBook - PyJam</span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
