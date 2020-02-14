@@ -1,10 +1,15 @@
 {% extends "users/base.html" %}
 {% block content %}
 {% load static %}
+
+<head>
+  <link rel="stylesheet" href='{% static "css/profile.css" %}'>
+</head>
+
 <div class="bg-white mt-5 shadow rounded overflow-hidden t-5">
     <div class="px-4 pb-4 bg-dark">
         <div class="media align-items-end profile-header">
-            <div class="profile mr-3"><img src="{% if user.profile.image%} {{ user.profile.image.url }} {% else%} {% static 'images/PyJam.png' %} {% endif %}" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
+            <div class="profile mr-3"><img src="{% if user.profile.image%} {{ user.profile.image.url }} {% else%} {% static 'images/PyJam.png' %} {% endif %}" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="../updateprofile" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
             <div class="media-body mt-5 ml-5 text-white">
                 <h4 class="mt-15 mb-0">{{user.first_name}} {{user.last_name}}</h4><br>
                 <p class="small mb-4"> <i class="fa fa-map-marker mr-2"></i>{{user.profile.location}}</p>
@@ -30,9 +35,9 @@
         </div>
         <div class="row">
             <div class="col-lg-6 mb-2 pr-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294928/nicole-honeywill-546848-unsplash_ymprvp.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-            <div class="col-lg-6 mb-2 pl-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294927/dose-juice-1184444-unsplash_bmbutn.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+            <div class="col-lg-6 mb-2 pr-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294927/dose-juice-1184444-unsplash_bmbutn.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
             <div class="col-lg-6 pr-lg-1 mb-2"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294926/cody-davis-253925-unsplash_hsetv7.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-            <div class="col-lg-6 pl-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294928/tim-foster-734470-unsplash_xqde00.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+            <div class="col-lg-6 pr-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294928/tim-foster-734470-unsplash_xqde00.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
         </div>
         <div class="py-4">
             <h5 class="mb-3">Friends</h5>
@@ -84,5 +89,3 @@
     </div>
 </div>
 {% endblock %}
-
-
