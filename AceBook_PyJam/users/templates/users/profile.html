@@ -1,27 +1,88 @@
 {% extends "users/base.html" %}
-
 {% block content %}
-
-<h1>{{ f_user }}</h1>
-    {% if myposts %}
-    <div class="container user_posts">
-        {% for x in myposts %}
-        <div class="profile">
-        <h2>{{ x.post_title }}</h2>
-        <p>{{ x.post_content }}</p>
-        <form action="{% url 'deletepost' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="item_id" value="{{x.id}}" />
-        <input type="submit" value="Delete Me">
-        </form>
+{% load static %}
+<div class="bg-white mt-5 shadow rounded overflow-hidden t-5">
+    <div class="px-4 pb-4 bg-dark">
+        <div class="media align-items-end profile-header">
+            <div class="profile mr-3"><img src="{% if user.profile.image%} {{ user.profile.image.url }} {% else%} {% static 'images/PyJam.png' %} {% endif %}" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
+            <div class="media-body mt-5 ml-5 text-white">
+                <h4 class="mt-15 mb-0">{{user.first_name}} {{user.last_name}}</h4><br>
+                <p class="small mb-4"> <i class="fa fa-map-marker mr-2"></i>{{user.profile.location}}</p>
+                <p class="small mb-4"> <i class="fa fas fa-user-secret mr-2"></i>Security notice: Last login: {{user.last_login}}</p>
+            </div>
         </div>
-        {% endfor %}
     </div>
-    {% else %}
 
-    <p>Looks like you have not posted anything, when you do, your posts will show here</p>
+    <div class="bg-light p-4 d-flex justify-content-end text-center">
+        <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+                <h5 class="font-weight-bold mb-0 d-block">241</h5><small class="text-muted"> <i class="fa fa-picture-o mr-1"></i>Photos</small>
+            </li>
+            <li class="list-inline-item">
+                <h5 class="font-weight-bold mb-0 d-block">84K</h5><small class="text-muted"> <i class="fa fa-user-circle-o mr-1"></i>Followers</small>
+            </li>
+        </ul>
+    </div>
 
+    <div class="py-4 px-4">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mb-2 pr-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294928/nicole-honeywill-546848-unsplash_ymprvp.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+            <div class="col-lg-6 mb-2 pl-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294927/dose-juice-1184444-unsplash_bmbutn.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+            <div class="col-lg-6 pr-lg-1 mb-2"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294926/cody-davis-253925-unsplash_hsetv7.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+            <div class="col-lg-6 pl-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294928/tim-foster-734470-unsplash_xqde00.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+        </div>
+        <div class="py-4">
+            <h5 class="mb-3">Friends</h5>
+            <div class="p-4 bg-light rounded shadow-sm">
+                {% for friend in friends %}
+                <p class="font-italic mb-0" style="font-size: 1.5rem">
+                <a href="{% url 'profile_pk' pk=friend.pk %}">
+                    <h3>{{ friend.username }}</h3>
+                </a></p>
+                <a href="{% url 'manage_friends' operation='remove' pk=friend.pk %}">
+                <button type="button" class="btn btn-default">Remove Friend</button>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="py-4">
+            <h5 class="mb-3">Siggested Friends</h5>
+            <div class="p-4 bg-light rounded shadow-sm">
+                {% for user in users %}
+                <p class="font-italic mb-0" style="font-size: 1.5rem">
+                <a href="{% url 'profile_pk' pk=user.pk %}">
+                    <h3>{{ user.username }}</h3>
+                </a></p>
+                {% if not user in friends %}
+                <a href="{% url 'manage_friends' operation='add' pk=user.pk %}">
+                <button type="button" class="btn btn-default">Add Friend</button>
+                </a>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+        <div class="py-4">
+            <h5 class="mb-3">Recent posts</h5>
+            <div class="p-4 bg-light rounded shadow-sm">
+                    {% if myposts %}
+                        {% for x in myposts %}
+                <p class="font-italic mb-0" style="font-size: 1.5rem">{{ x.post_content }}</p>
+                        <form action="{% url 'deletepost' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="item_id" value="{{x.id}}" />
+                        <input type="submit" class="btn btn-sm btn-danger" value="Delete Me">
+                        </form>
+                    {% endfor %}
+                 {% else %}
+                <p>Looks like you have not posted anything, when you do, your posts will show here</p>
     {% endif %}
-
-
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+
