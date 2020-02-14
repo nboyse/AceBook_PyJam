@@ -5,13 +5,35 @@
 
 html,body{
 background-image: url('https://images.unsplash.com/photo-1474540412665-1cdae210ae6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1662&q=80');
+height: 100%;
+/* background-position: center; */
 background-repeat: no-repeat;
-/*height: 100%;*/
+background-size: auto;
 font-family: 'Numans', sans-serif;
+}
+
+h5{
+  color: white !important;
+}
+
+.card-text{
+  color: white !important;
 }
 .container{
 height: 100%;
 align-content: center;
+}
+.pt-5{
+  background-color: rgba(0,0,0,0.65) !important;
+  color: white;
+  width: 350px;
+  height: 400px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.post_color{
+  color: white !important;
 }
 .card{
 height: 600px;
