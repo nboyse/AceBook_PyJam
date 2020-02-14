@@ -9,7 +9,7 @@
 <div class="bg-white mt-5 shadow rounded overflow-hidden t-5">
     <div class="px-4 pb-4 bg-dark">
         <div class="media align-items-end profile-header">
-            <div class="profile mr-3"><img src="{% if user.profile.image%} {{ user.profile.image.url }} {% else%} {% static 'images/PyJam.png' %} {% endif %}" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="../updateprofile" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
+            <div class="profile mr-3"><img src="{% if user.profile.image%} {{ user.profile.image.url }} {% else%} {% static 'images/PyJam.png' %} {% endif %}" alt="..." width="130" class="rounded mt-5 mb-2 img-thumbnail"><a href="../updateprofile" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
             <div class="media-body mt-5 ml-5 text-white">
                 <h4 class="mt-15 mb-0">{{user.first_name}} {{user.last_name}}</h4><br>
                 <p class="small mb-4"> <i class="fa fa-map-marker mr-2"></i>{{user.profile.location}}</p>
@@ -28,18 +28,39 @@
             </li>
         </ul>
     </div>
+    <div class="py-4 px-4">
+    <div class="py-4">
+        <h5 class="mb-3">Recent posts</h5>
+        <div class="p-4 bg-light rounded shadow-sm">
+                {% if myposts %}
+                    {% for x in myposts %}
+            <p class="font-italic mb-0" style="font-size: 1.5rem">{{ x.post_content }}</p>
+                    <form action="{% url 'deletepost' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="item_id" value="{{x.id}}" />
+                    <input type="submit" class="btn btn-sm btn-danger" value="Delete Me">
+                    </form>
+                {% endfor %}
+             {% else %}
+            <p>Looks like you have not posted anything, when you do, your posts will show here</p>
+{% endif %}
+        </div>
+    </div>
 
     <div class="py-4 px-4">
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
         </div>
         <div class="row">
-            <div class="col-lg-6 mb-2 pr-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294928/nicole-honeywill-546848-unsplash_ymprvp.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-            <div class="col-lg-6 mb-2 pr-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294927/dose-juice-1184444-unsplash_bmbutn.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-            <div class="col-lg-6 pr-lg-1 mb-2"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294926/cody-davis-253925-unsplash_hsetv7.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
-            <div class="col-lg-6 pr-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294928/tim-foster-734470-unsplash_xqde00.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+            <div class="col-lg-2 mb-2 pr-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294928/nicole-honeywill-546848-unsplash_ymprvp.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+            <div class="col-lg-2 mb-2 pr-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294927/dose-juice-1184444-unsplash_bmbutn.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+            <div class="col-lg-2 pr-lg-1 mb-2"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294926/cody-davis-253925-unsplash_hsetv7.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
+            <div class="col-lg-2 pr-lg-1"><img src="https://res.cloudinary.com/mhmd/image/upload/v1556294928/tim-foster-734470-unsplash_xqde00.jpg" alt="" class="img-fluid rounded shadow-sm"></div>
         </div>
-        <div class="py-4">
+        <br>
+        <br>
+        <div class="row">
+            <div class="container col-md-4">
             <h5 class="mb-3">Friends</h5>
             <div class="p-4 bg-light rounded shadow-sm">
                 {% for friend in friends %}
@@ -52,9 +73,9 @@
                 </a>
                 {% endfor %}
             </div>
-        </div>
-        <div class="py-4">
-            <h5 class="mb-3">Siggested Friends</h5>
+    </div>
+        <div class="container col-md-4">
+            <h5 class="mb-3">Suggested Friends</h5>
             <div class="p-4 bg-light rounded shadow-sm">
                 {% for user in users %}
                 <p class="font-italic mb-0" style="font-size: 1.5rem">
@@ -67,25 +88,10 @@
                 </a>
                 {% endif %}
             {% endfor %}
-            </div>
         </div>
-        <div class="py-4">
-            <h5 class="mb-3">Recent posts</h5>
-            <div class="p-4 bg-light rounded shadow-sm">
-                    {% if myposts %}
-                        {% for x in myposts %}
-                <p class="font-italic mb-0" style="font-size: 1.5rem">{{ x.post_content }}</p>
-                        <form action="{% url 'deletepost' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="item_id" value="{{x.id}}" />
-                        <input type="submit" class="btn btn-sm btn-danger" value="Delete Me">
-                        </form>
-                    {% endfor %}
-                 {% else %}
-                <p>Looks like you have not posted anything, when you do, your posts will show here</p>
-    {% endif %}
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
