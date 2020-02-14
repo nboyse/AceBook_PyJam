@@ -1,14 +1,30 @@
 {% extends "users/base.html" %}
 
 {% block content %}
+{% load static %}
 
-<h1>Edit Profile Page</h1>
+<div class="bg-white mt-5 shadow rounded overflow-hidden t-5">
+  <div class="px-4 pb-4 bg-dark">
+      <div class="media align-items-end profile-header">
+          <div class="profile mr-3"><img src="{% if user.profile.image%} {{ user.profile.image.url }} {% else%} {% static 'images/PyJam.png' %} {% endif %}" alt="..." width="130" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
+          <div class="media-body mt-5 ml-5 text-white">
+              <h4 class="mt-15 mb-0">{{user.first_name}} {{user.last_name}}</h4><br>
+              <p class="small mb-4"> <i class="fa fa-map-marker mr-2"></i>{{user.profile.location}}</p>
+              <p class="small mb-4"> <i class="fa fas fa-user-secret mr-2"></i>Security notice: Last login: {{user.last_login}}</p>
+          </div>
+      </div>
+  </div>
+    <div class="py-4 px-4">
+    <h1>Edit Profile Page</h1>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+              <button type="submit">Save changes</button>
 
-    <form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ user_form.as_p }}
-  {{ profile_form.as_p }}
-  <button type="submit">Save changes</button>
-</form>
+        </form>
+    </div>
+</div>
+
 
 {% endblock %}
