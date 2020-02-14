@@ -2,5 +2,31 @@
 
 {% block content %}
 
-<h1>About Page</h1>
+{% load static %}
+<div class="bg-white mt-5 shadow rounded overflow-hidden t-5">
+    <div class="px-4 pb-4 bg-dark">
+        <div class="media align-items-end profile-header">
+            <div class="profile mr-3"><img src="{% static 'images/PyJam.png' %}" alt="..." width="130" class="rounded mb-2 mt-5 img-thumbnail"><a href="#" class="btn btn-dark btn-sm btn-block">About PyJam</a></div>
+            <div class="media-body mt-5 ml-5 text-white">
+                <h4 class="mt-15 mb-0">Created by Aaron, Anne & Natasha</h4><br>
+                <p class="small mb-4"> <i class="fa fa-map-marker mr-2"></i>Makers, Treehouse</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="py-4 px-4">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <h5 class="mb-0">Tech used</h5><a href="#" class="btn btn-link text-muted"></a>
+        </div>
+
+        <p>Python 3.7 was the underlying technology</p>
+        <p>Django 3.0 was used as the web framework</p>
+        <p>GitHub for Version Control</p>
+        <p>Postgres for database access</p>
+    </div>
+</div>
+
+
+
 {% endblock %}
